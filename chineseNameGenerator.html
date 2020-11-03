@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chinese Name generator</title>
+	
+	<style>
+div{
+	margin: 5px;
+	font-family: Informal Roman;
+	font-size: 2em;
+	font-style: bold;
+/*	background-image: none;*/
+	/*background-image: url("https://pm-site-assets-py4.s3.us-east-2.amazonaws.com/products/legacy/_1200x630_crop_center-center_82_none/aged_65_sq1_250.jpg?mtime=1586979606");*/
+	padding: 20px;
+	
+	height: 700px;
+	width: 400px;
+}
+</style>
+</head>
+<body>
+	
+<button onclick = "create();">Create </button>
+<br>
+<br>
+<div id = "name"> </span>
+<script>
+	var female = ["Fan", "Liu", "Mei", "Jei", "Ju", "Ai", "Ning", "Ya", "Wen"];
+	var male = ["Chao", "Chen", "Bo", "Jing", "Fa", "Fan", "Li", "Peng", "Gui", "Shi", "Tao", "Zhen", "Zhu", "Wei"]
+	var surname = ["Li", "Ye", "Yu", "Wu", "Yeng", "Huang", "Zhao"]
+
+	
+	function create()
+	{
+		//supposed to ensure background only appears when create name.  Not sure why it doesn't work
+		document.getElementById("name").style.backgroundImage = "url: ('https://pm-site-assets-py4.s3.us-east-2.amazonaws.com/products/legacy/_1200x630_crop_center-center_82_none/aged_65_sq1_250.jpg?mtime=1586979606')"	
+
+		//50% chance of being male
+		var genderScore = Math.floor(Math.random() * 2);
+		
+
+		var last = Math.floor(Math.random() * (surname.length - 1));
+		
+
+		(genderScore == 0) ? makeName(female, "female") : makeName(male, "male");
+		//
+		function makeName(sex, gender)
+		{
+			var first = Math.floor(Math.random() * (sex.length - 1));
+		    var middle = Math.floor(Math.random() * (sex.length - 1));
+
+		    //this is an attempt to prevent repeated first names.  Will it work?  Nope, didn't work	
+		    if (first == middle)
+		    {
+		    	makeName(sex);
+		    }
+		    else
+		    {
+			document.getElementById("name").innerHTML = sex[first] + "-" + sex[middle] + " " + surname[last] + "<br> " + gender;
+			
+		}
+		}
+
+		
+
+		
+	}
+	</script>
+	</body>
+	</html>
